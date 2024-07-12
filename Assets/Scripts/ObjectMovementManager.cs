@@ -24,6 +24,7 @@ namespace Assets.Scripts
 
         public void Add(GameObject obj)
         {
+            if (_objects.Contains(obj)) return;
             _objects.Add(obj);
         }
     }

@@ -7,21 +7,19 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    [RequireComponent(typeof(Collider))]
     internal class ObstacleSpawner : MonoBehaviour, ISpawner
     {
         [SerializeField]
         private Wall _wall = null;
         [SerializeField]
-        private GameObject _pool = null;
+        private GameObject _poolObject = null;
 
-        /*[SerializeField]
-        private int _minimalGapsPerWave = 0;*/
         [SerializeField]
         private int _maximumGapsPerWave = 0;
 
         private System.Random _rng = null;
         private int _positionCount = 0;
+        private ObjectPool<Wall> _pool = null;
 
         public System.Random RNG
         {
@@ -38,12 +36,8 @@ namespace Assets.Scripts
 
         private void Start()
         {
-            /*if(_maximumGapsPerWave < _minimalGapsPerWave)
-            {
-                throw new ArgumentException("Maximum range value for gaps per wave can't be lower than minimal value");
-            }*/
-
             if (_maximumGapsPerWave <= 0) Debug.LogWarning($"Maximum gap count per wave is lower or equals zero");
+            _pool = new ObjectPool<Wall>();
         }
 
         [ContextMenu("Spawn")]
@@ -58,9 +52,19 @@ namespace Assets.Scripts
             var gapsPositions = GenerateGapsPositions();
             Debug.Log($"Gaps will be at positions: {string.Join(", ", gapsPositions)}");
 
-            Wall wall = Instantiate(_wall, transform.position, transform.rotation, _pool.transform);
+            Wall wall = _pool.Get();
+            wall?.Enable();
 
+            if(wall == null)
+            {
+                wall = Instantiate(_wall, _poolObject.transform);
+                _pool.Add(wall);
+            }
+
+            wall.transform.position = transform.position;
+            wall.transform.rotation = transform.rotation;
             wall.Disable(gapsPositions);
+            wall.gameObject.SetActive(true);
 
             return wall;
         }

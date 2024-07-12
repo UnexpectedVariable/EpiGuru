@@ -4,18 +4,23 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class ObjectPool : MonoBehaviour
+    public class ObjectPool<T> where T : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField]
+        private List<T> _pool = new List<T>();
 
+        public T Get()
+        {
+            foreach (T obj in _pool)
+            {
+                if (obj.gameObject.activeInHierarchy is false) return obj;
+            }
+            return null;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Add(T obj)
         {
-
+            _pool.Add(obj);
         }
     }
 }

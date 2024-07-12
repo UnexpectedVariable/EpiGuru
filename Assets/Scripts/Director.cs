@@ -61,7 +61,7 @@ namespace Assets.Scripts
         private void Spawn(ISpawner spawner)
         {
             var gObject = spawner?.Spawn();
-            _movementManager.Add(gObject);
+            _movementManager?.Add(gObject);
         }
 
         [ContextMenu("Move")]
@@ -72,7 +72,7 @@ namespace Assets.Scripts
 
         private async void SpawnLoopAsync(ISpawner spawner)
         {
-            while(_isWorking)
+            while(_isWorking && spawner != null)
             {
                 Spawn(spawner);
                 await Task.Delay(TimeSpan.FromSeconds(_spawnInterval));
@@ -81,7 +81,7 @@ namespace Assets.Scripts
 
         private async void MoveLoopAsync()
         {
-            while(_isWorking)
+            while(_isWorking && _movementManager != null)
             {
                 Move();
                 await Task.Delay(TimeSpan.FromSeconds(_moveInterval));
