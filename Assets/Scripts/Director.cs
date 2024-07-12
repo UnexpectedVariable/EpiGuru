@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -16,6 +19,8 @@ namespace Assets.Scripts
         private CoinSpawner _coinSpawner = null;
         [SerializeField]
         private ObjectMovementManager _movementManager = null;
+        [SerializeField]
+        private Player _player = null;
 
         [SerializeField]
         private GameObject _plane = null;
@@ -36,6 +41,13 @@ namespace Assets.Scripts
         [SerializeField]
         private bool _isWorking = false;
 
+        [SerializeField]
+        private TextMeshProUGUI _pointsLabel = null;
+        [SerializeField]
+        private Button _pauseButton = null;
+        [SerializeField]
+        private Button _exitButton = null;
+
         private void Start()
         {
             if (_useSeed) _rng = new System.Random(_seed);
@@ -43,6 +55,22 @@ namespace Assets.Scripts
 
             InitializeObstacleSpawner();
             InitializeCoinSpawner();
+            InitializePlayer();
+
+            _pauseButton.onClick.AddListener(() =>
+            {
+                _isWorking = !_isWorking;
+                if (_isWorking) Begin();
+            });
+            _exitButton.onClick.AddListener(() =>
+            {
+                SceneManager.LoadScene("MainScene");
+            });
+        }
+
+        private void InitializePlayer()
+        {
+            _player.MaximumX = _plane.transform.lossyScale.x * 5 - _player.transform.lossyScale.x;
         }
 
         private void InitializeCoinSpawner()
@@ -50,6 +78,7 @@ namespace Assets.Scripts
             _coinSpawner.RNG = _rng;
             _coinSpawner.MinimalX = _plane.transform.lossyScale.x * -5;
             _coinSpawner.MaximumX = _plane.transform.lossyScale.x * 5;
+            _coinSpawner.PointsLabel = _pointsLabel;
         }
 
         private void InitializeObstacleSpawner()

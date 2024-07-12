@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -21,6 +22,8 @@ namespace Assets.Scripts
         public float MaximumX = 0;
 
         private ObjectPool<Coin> _pool = null;
+
+        public TextMeshProUGUI PointsLabel = null;
 
         public System.Random RNG
         {
@@ -52,6 +55,12 @@ namespace Assets.Scripts
             if(coin == null)
             {
                 coin ??= Instantiate(_coin, _poolObject.transform);
+                coin.OnPlayerEncountered += () =>
+                {
+                    var points = int.Parse(PointsLabel.text);
+                    points += coin.Points;
+                    PointsLabel.text = $"{points}";
+                };
                 _pool.Add(coin);
             }
             coin.transform.position = position;

@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 203632558}
   - component: {fileID: 203632557}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CounterTMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -696,14 +696,18 @@ MonoBehaviour:
   _obstacleSpawner: {fileID: 1570613326}
   _coinSpawner: {fileID: 1570613327}
   _movementManager: {fileID: 1054509466}
+  _player: {fileID: 1938303421588542518}
   _plane: {fileID: 1686313923}
   _obstacle: {fileID: 2762833106369713574, guid: 8193a4ad8f7544549b7fd7423b53e564,
     type: 3}
   _seed: 0
   _useSeed: 0
-  _spawnInterval: 3.5
-  _moveInterval: 0.01
+  _spawnInterval: 1.75
+  _moveInterval: 0.0025
   _isWorking: 0
+  _pointsLabel: {fileID: 203632557}
+  _pauseButton: {fileID: 1734213935}
+  _exitButton: {fileID: 66748176}
 --- !u!1 &1054509464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1075,7 @@ MonoBehaviour:
   _poolObject: {fileID: 1736504293}
   MinimalX: 0
   MaximumX: 0
+  PointsLabel: {fileID: 0}
 --- !u!1 &1593480508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,13 +1162,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593480508}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.081195645, y: 0.017791646, z: -0.0002757949, w: 0.99653935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 90, z: -4400}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 9.314, y: 2.057, z: 0.136}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1593480512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1444,7 +1449,7 @@ GameObject:
   - component: {fileID: 1687951977}
   - component: {fileID: 1687951976}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PointsTMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1973,7 +1978,7 @@ PrefabInstance:
     - target: {fileID: 3689071312316399798, guid: 8b8884e4f9197404d84d7945eb4cf383,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4200
+      value: -4100
       objectReference: {fileID: 0}
     - target: {fileID: 3689071312316399798, guid: 8b8884e4f9197404d84d7945eb4cf383,
         type: 3}
@@ -2015,11 +2020,107 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6552888722690048710, guid: 8b8884e4f9197404d84d7945eb4cf383,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6552888722690048710, guid: 8b8884e4f9197404d84d7945eb4cf383,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1938303421588542518}
+    - targetCorrespondingSourceObject: {fileID: 6552888722690048710, guid: 8b8884e4f9197404d84d7945eb4cf383,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1938303421588542519}
   m_SourcePrefab: {fileID: 100100000, guid: 8b8884e4f9197404d84d7945eb4cf383, type: 3}
+--- !u!1 &1938303421588542517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6552888722690048710, guid: 8b8884e4f9197404d84d7945eb4cf383,
+    type: 3}
+  m_PrefabInstance: {fileID: 1938303421588542516}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1938303421588542518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938303421588542517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cea65eb127bfc44087c8822d2b81cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leftStrafeAction:
+    m_Name: Left Strafe
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 7c1b6e27-6700-4782-a276-2ad4b9a2fa9a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 52226726-c983-468b-8307-585ea7aa5548
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Left Strafe
+      m_Flags: 0
+    m_Flags: 0
+  _rightStrafeAction:
+    m_Name: Right Strafe
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: d920bba8-3d14-4961-9aa7-73fe58215a53
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 0419446f-db8c-444e-86c5-afca53488e89
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Right Strafe
+      m_Flags: 0
+    m_Flags: 0
+  _body: {fileID: 0}
+  _movementVector: {x: 1, y: 0, z: 0}
+  _pollingInterval: 0.0025
+  MaximumX: 0
+--- !u!54 &1938303421588542519
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938303421588542517}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

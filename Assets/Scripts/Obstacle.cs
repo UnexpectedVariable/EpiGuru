@@ -18,6 +18,7 @@ namespace Assets.Scripts
                     transform.parent.gameObject.SetActive(false);
                     break;
                 case "Player":
+                    Debug.Log("Obstacle triggered!");
                     break;
             }
         }
