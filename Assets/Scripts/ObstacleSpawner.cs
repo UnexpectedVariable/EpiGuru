@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Assets.Scripts
 {
     [RequireComponent(typeof(Collider))]
-    internal class ObstacleSpawner : MonoBehaviour
+    internal class ObstacleSpawner : MonoBehaviour, ISpawner
     {
         [SerializeField]
         private Wall _wall = null;
@@ -29,7 +29,11 @@ namespace Assets.Scripts
         }
         public int PositionCount
         {
-            set => _positionCount = value;
+            set
+            {
+                Debug.Log($"{gameObject.name} PositionCount assigned value: {value}");
+                _positionCount = value;
+            }
         }
 
         private void Start()
@@ -40,19 +44,25 @@ namespace Assets.Scripts
             }*/
 
             if (_maximumGapsPerWave <= 0) Debug.LogWarning($"Maximum gap count per wave is lower or equals zero");
-
-            _rng = new System.Random();
         }
 
         [ContextMenu("Spawn")]
-        public void Spawn()
+        public GameObject Spawn()
         {
-            if (_rng == null) return;
+            if (_rng == null) return null;
+            return SpawnWall().gameObject;
+        }
 
+        private Wall SpawnWall()
+        {
             var gapsPositions = GenerateGapsPositions();
+            Debug.Log($"Gaps will be at positions: {string.Join(", ", gapsPositions)}");
 
             Wall wall = Instantiate(_wall, transform.position, transform.rotation, _pool.transform);
 
+            wall.Disable(gapsPositions);
+
+            return wall;
         }
 
         private int[] GenerateGapsPositions()
@@ -61,7 +71,7 @@ namespace Assets.Scripts
 
             for(int i = 0; i < positions.Length; i++)
             {
-                positions[i] = _rng.Next(_positionCount + 1);
+                positions[i] = _rng.Next(_positionCount);
             }
 
             return positions;
