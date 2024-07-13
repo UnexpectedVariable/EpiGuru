@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using AppsFlyerSDK;
+using OneSignalSDK;
+using System;
 using System.Threading.Tasks;
 using TMPro;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,7 +24,7 @@ namespace Assets.Scripts
         [Header("Geometry")]
         [SerializeField]
         private GameObject _plane = null;
-        [SerializeField] 
+        [SerializeField]
         private GameObject _obstacle = null;
 
         [Header("Random")]
@@ -62,6 +59,12 @@ namespace Assets.Scripts
         private GameObject _gameScreen = null;
         [SerializeField]
         private GameObject _endgameScreen = null;
+
+        private void Awake()
+        {
+            AppsFlyer.initSDK("ytPuQc6oHMvGHLh83FVpdd", null);
+            OneSignal.Initialize("635c5f12-bb1c-4e8a-92a5-65636c604328");
+        }
 
         private void Start()
         {
@@ -141,7 +144,7 @@ namespace Assets.Scripts
 
         private async void SpawnLoopAsync(ISpawner spawner)
         {
-            while(_isWorking && spawner != null)
+            while (_isWorking && spawner != null)
             {
                 Spawn(spawner);
                 await Task.Delay(TimeSpan.FromSeconds(_spawnInterval));
@@ -150,7 +153,7 @@ namespace Assets.Scripts
 
         private async void MoveLoopAsync()
         {
-            while(_isWorking && _movementManager != null)
+            while (_isWorking && _movementManager != null)
             {
                 Move();
                 await Task.Delay(TimeSpan.FromSeconds(_moveInterval));

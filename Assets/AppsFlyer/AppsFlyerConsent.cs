@@ -1,21 +1,18 @@
-using System;
-using System.Collections.Generic;
-
 namespace AppsFlyerSDK
 {
     /// <summary>
     // Data class representing a user's consent for data processing in accordance with GDPR and DMA
     // (Digital Markets Act) compliance, specifically regarding advertising preferences.
-  
+
     // This class should be used to notify and record the user's applicability
     // under GDPR, their general consent to data usage, and their consent to personalized
     // advertisements based on user data.
- 
+
     // Note that the consent for data usage and ads personalization pair is only applicable when the user is
     // subject to GDPR guidelines. Therefore, the following factory methods should be used accordingly:
     // - Use [forGDPRUser] when the user is subject to GDPR.
     // - Use [forNonGDPRUser] when the user is not subject to GDPR.
-    
+
     // @property isUserSubjectToGDPR Indicates whether GDPR regulations apply to the user (true if the user is
     //  a  subject of GDPR). It also serves as a flag for compliance with relevant aspects of DMA regulations.
     // @property hasConsentForDataUsage Indicates whether the user has consented to the use of their data for advertising

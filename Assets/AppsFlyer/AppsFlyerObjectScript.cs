@@ -1,11 +1,10 @@
-using System.Collections;
+using AppsFlyerSDK;
 using System.Collections.Generic;
 using UnityEngine;
-using AppsFlyerSDK;
 
 // This class is intended to be used the the AppsFlyerObject.prefab
 
-public class AppsFlyerObjectScript : MonoBehaviour , IAppsFlyerConversionData
+public class AppsFlyerObjectScript : MonoBehaviour, IAppsFlyerConversionData
 {
 
     // These fields are set from the editor so do not modify!
@@ -32,7 +31,7 @@ public class AppsFlyerObjectScript : MonoBehaviour , IAppsFlyerConversionData
         AppsFlyer.initSDK(devKey, appID, getConversionData ? this : null);
 #endif
         //******************************/
- 
+
         AppsFlyer.startSDK();
     }
 

@@ -29,11 +29,13 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-namespace OneSignalSDK {
+namespace OneSignalSDK
+{
     /// <summary>
     /// Inventory distributed with the *.unitypackage in order to determine if there are any legacy files in need of removal
     /// </summary>
-    internal sealed class OneSignalFileInventory : ScriptableObject {
+    internal sealed class OneSignalFileInventory : ScriptableObject
+    {
         /// <summary>
         /// Array of paths within the OneSignal directory which were determined to be part of the distributed unitypackage
         /// </summary>
@@ -51,7 +53,8 @@ namespace OneSignalSDK {
         /// </summary>
         /// <param name="paths">the paths to check and convert</param>
         /// <returns>paths with / as the directory separator</returns>
-        public static string[] ConvertPathsToUnix(string[] paths) {
+        public static string[] ConvertPathsToUnix(string[] paths)
+        {
             if (Path.DirectorySeparatorChar == Path.AltDirectorySeparatorChar)
                 return paths;
 

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -48,7 +44,7 @@ namespace Assets.Scripts
         public GameObject Spawn()
         {
             if (_rng == null) return null;
-            if(_isPaused) return null;
+            if (_isPaused) return null;
             return SpawnWall().gameObject;
         }
 
@@ -60,7 +56,7 @@ namespace Assets.Scripts
             Wall wall = _pool.Get();
             wall?.Enable();
 
-            if(wall == null)
+            if (wall == null)
             {
                 wall = Instantiate(_wall, _poolObject.transform);
                 wall.SubscribeObstacles(OnObstacleTriggered);
@@ -79,7 +75,7 @@ namespace Assets.Scripts
         {
             int[] positions = new int[_maximumGapsPerWave];
 
-            for(int i = 0; i < positions.Length; i++)
+            for (int i = 0; i < positions.Length; i++)
             {
                 positions[i] = _rng.Next(_positionCount);
             }
@@ -89,7 +85,7 @@ namespace Assets.Scripts
 
         public void TogglePause()
         {
-            _isPaused = !_isPaused; 
+            _isPaused = !_isPaused;
         }
     }
 }

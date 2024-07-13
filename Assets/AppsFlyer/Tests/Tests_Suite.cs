@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using NSubstitute;
 using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
-using NSubstitute;
 
 namespace AppsFlyerSDK.Tests
 {
@@ -35,7 +35,7 @@ namespace AppsFlyerSDK.Tests
             var AppsFlyerMOCKInterface = Substitute.For<IAppsFlyerNativeBridge>();
             AppsFlyer.instance = AppsFlyerMOCKInterface;
             AppsFlyer.sendEvent("testevent", null);
-            AppsFlyerMOCKInterface.Received().sendEvent("testevent", null,false, null);
+            AppsFlyerMOCKInterface.Received().sendEvent("testevent", null, false, null);
         }
 
 
@@ -559,7 +559,7 @@ namespace AppsFlyerSDK.Tests
             var AppsFlyerMOCKInterface = Substitute.For<IAppsFlyerAndroidBridge>();
 
             AppsFlyer.instance = AppsFlyerMOCKInterface;
-            AppsFlyer.validateAndSendInAppPurchase("ewjkekwjekw","hewjehwj", "purchaseData", "3.0", "USD", null, null);
+            AppsFlyer.validateAndSendInAppPurchase("ewjkekwjekw", "hewjehwj", "purchaseData", "3.0", "USD", null, null);
             AppsFlyerMOCKInterface.Received().validateAndSendInAppPurchase("ewjkekwjekw", "hewjehwj", "purchaseData", "3.0", "USD", null, null);
 
         }
@@ -589,7 +589,8 @@ namespace AppsFlyerSDK.Tests
         }
 
         [Test]
-        public void setDisableNetworkData_called() {
+        public void setDisableNetworkData_called()
+        {
             var AppsFlyerMOCKInterface = Substitute.For<IAppsFlyerAndroidBridge>();
 
             AppsFlyer.instance = AppsFlyerMOCKInterface;

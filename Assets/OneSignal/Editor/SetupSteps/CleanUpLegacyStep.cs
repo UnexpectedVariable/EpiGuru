@@ -30,12 +30,14 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 
-namespace OneSignalSDK {
+namespace OneSignalSDK
+{
     /// <summary>
     /// Handles if there are files within the Assets/OneSignal folder which should not be there. Typically this
     /// indicates the presence of legacy files.
     /// </summary>
-    public sealed class CleanUpLegacyStep : OneSignalSetupStep {
+    public sealed class CleanUpLegacyStep : OneSignalSetupStep
+    {
         public override string Summary
             => "Remove legacy files";
 
@@ -46,7 +48,8 @@ namespace OneSignalSDK {
         public override bool IsRequired
             => true;
 
-        protected override bool _getIsStepCompleted() {
+        protected override bool _getIsStepCompleted()
+        {
             var diff = _getDiff();
 
             if (diff == null)
@@ -55,7 +58,8 @@ namespace OneSignalSDK {
             return !diff.Any();
         }
 
-        protected override void _runStep() {
+        protected override void _runStep()
+        {
             var diff = _getDiff();
 
             if (diff == null)
@@ -65,7 +69,8 @@ namespace OneSignalSDK {
                 File.Delete(path);
         }
 
-        private IEnumerable<string> _getDiff() {
+        private IEnumerable<string> _getDiff()
+        {
             if (_inventory == null)
                 _inventory = AssetDatabase.LoadAssetAtPath<OneSignalFileInventory>(OneSignalFileInventory.AssetPath);
 

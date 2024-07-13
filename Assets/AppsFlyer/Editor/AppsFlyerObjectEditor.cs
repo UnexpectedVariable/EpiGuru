@@ -50,7 +50,7 @@ public class AppsFlyerObjectEditor : Editor
 
         EditorGUILayout.HelpBox("For more information on setting up AppsFlyer check out our relevant docs.", MessageType.None);
 
-   
+
         if (GUILayout.Button("AppsFlyer Unity Docs", new GUILayoutOption[] { GUILayout.Width(200) }))
         {
             Application.OpenURL("https://support.appsflyer.com/hc/en-us/articles/213766183-Unity-SDK-integration-for-developers");

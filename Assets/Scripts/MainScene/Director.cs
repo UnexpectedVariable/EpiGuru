@@ -1,10 +1,4 @@
 ﻿using Assets.Scripts.Location;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -26,7 +20,7 @@ namespace Assets.Scripts.MainScene
             });
 
             var geoData = await _geoRequester.GetAsync();
-            if(geoData.country != "Ukraine")
+            if (geoData.country != "Ukraine")
             {
                 Application.OpenURL("https://uk.wikipedia.org/");
             }

@@ -890,6 +890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startButton: {fileID: 2103453157}
+  _geoRequester: {fileID: 1185133263}
 --- !u!1 &2032564926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1044,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2103453158}
   m_OnClick:
     m_PersistentCalls:

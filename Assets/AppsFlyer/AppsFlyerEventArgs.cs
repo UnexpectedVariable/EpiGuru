@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AppsFlyerSDK
 {
-    
+
     /// <summary>
     /// Event args for AppsFlyer requests.
     /// Used for sessions and in-app events.
@@ -39,17 +39,17 @@ namespace AppsFlyerSDK
     /// </summary>
     public class DeepLinkEventsArgs : EventArgs
     {
-        
+
         /// <summary>
         /// DeepLink dictionary to get additional parameters
         /// </summary>
         public Dictionary<string, object> deepLink;
-        
+
         /// <summary>
         /// DeepLink status: FOUND, NOT_FOUND, ERROR
         /// </summary>
         public DeepLinkStatus status { get; }
-        
+
         /// <summary>
         /// DeepLink error: TIMEOUT, NETWORK, HTTP_STATUS_CODE, UNEXPECTED
         /// </summary>
@@ -96,7 +96,7 @@ namespace AppsFlyerSDK
         }
 
         public string getAfSub3()
-        { 
+        {
             return getDeepLinkParameter("af_sub3");
         }
 
@@ -130,7 +130,7 @@ namespace AppsFlyerSDK
         {
             return deepLink;
         }
-        
+
         public DeepLinkEventsArgs(string str)
         {
             try
@@ -140,17 +140,17 @@ namespace AppsFlyerSDK
                 string status = "";
                 string error = "";
 
-                
+
                 if (dictionary.ContainsKey("status") && dictionary["status"] != null)
                 {
                     status = dictionary["status"].ToString();
                 }
-                
+
                 if (dictionary.ContainsKey("error") && dictionary["error"] != null)
                 {
                     error = dictionary["error"].ToString();
                 }
-                
+
                 if (dictionary.ContainsKey("deepLink") && dictionary["deepLink"] != null)
                 {
                     this.deepLink = AppsFlyer.CallbackStringToDictionary(dictionary["deepLink"].ToString());
@@ -172,7 +172,7 @@ namespace AppsFlyerSDK
                         this.status = DeepLinkStatus.ERROR;
                         break;
                 }
-                
+
                 switch (error)
                 {
                     case "TIMEOUT":
@@ -188,31 +188,33 @@ namespace AppsFlyerSDK
                         this.error = DeepLinkError.UNEXPECTED;
                         break;
                 }
-                
+
             }
             catch (Exception e)
             {
                 AppsFlyer.AFLog("DeepLinkEventsArgs.parseDeepLink", String.Format("{0} Exception caught.", e));
             }
         }
-        
+
         private string getDeepLinkParameter(string name)
         {
             if (deepLink != null && deepLink.ContainsKey(name) && deepLink[name] != null)
             {
                 return deepLink[name].ToString();
             }
-            
+
             return null;
         }
-        
+
     }
 
-    public enum DeepLinkStatus {
+    public enum DeepLinkStatus
+    {
         FOUND, NOT_FOUND, ERROR
     }
 
-    public enum DeepLinkError {
+    public enum DeepLinkError
+    {
         TIMEOUT, NETWORK, HTTP_STATUS_CODE, UNEXPECTED
     }
 }

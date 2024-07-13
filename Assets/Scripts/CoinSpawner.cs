@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -41,7 +35,7 @@ namespace Assets.Scripts
         public GameObject Spawn()
         {
             if (_rng == null) return null;
-            if(_isPaused) return null;
+            if (_isPaused) return null;
             return SpawnCoin().gameObject;
         }
 
@@ -55,7 +49,7 @@ namespace Assets.Scripts
 
             Coin coin = _pool.Get();
 
-            if(coin == null)
+            if (coin == null)
             {
                 coin ??= Instantiate(_coin, _poolObject.transform);
                 coin.OnPlayerEncountered += () =>

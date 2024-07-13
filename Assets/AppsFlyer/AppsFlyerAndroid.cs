@@ -224,7 +224,8 @@ namespace AppsFlyerSDK
         /// Set the user phone number.
         /// </summary>
         /// <param name="phoneNumber">User phoneNumber.</param>
-        public void setPhoneNumber(string phoneNumber){
+        public void setPhoneNumber(string phoneNumber)
+        {
 #if !UNITY_EDITOR
             appsFlyerAndroid.CallStatic("setPhoneNumber", phoneNumber);
 #endif
@@ -343,7 +344,7 @@ namespace AppsFlyerSDK
         {
             sendEvent(eventName, eventValues, false, AppsFlyer.CallBackObjectName);
         }
-        
+
         public void sendEvent(string eventName, Dictionary<string, string> eventValues, bool shouldCallback, string callBackObjectName)
         {
 #if !UNITY_EDITOR
@@ -670,7 +671,8 @@ namespace AppsFlyerSDK
         /// <summary>
         /// To measure push notifications as part of a retargeting campaign.
         /// </summary>
-        public void handlePushNotifications(){
+        public void handlePushNotifications()
+        {
 #if !UNITY_EDITOR
             appsFlyerAndroid.CallStatic("handlePushNotifications");
 #endif
@@ -692,7 +694,8 @@ namespace AppsFlyerSDK
         /// <summary>
         /// subscribe to unified deep link callbacks
         /// </summary>
-        public void subscribeForDeepLink(string objectName){
+        public void subscribeForDeepLink(string objectName)
+        {
 #if !UNITY_EDITOR
             appsFlyerAndroid.CallStatic("subscribeForDeepLink", objectName);
 #endif
@@ -722,7 +725,8 @@ namespace AppsFlyerSDK
         /// <summary>
         /// Use to opt-out of collecting the network operator name (carrier) and sim operator name from the device.
         /// </summary>
-        public void setDisableNetworkData(bool disable) {
+        public void setDisableNetworkData(bool disable)
+        {
 #if !UNITY_EDITOR
                 appsFlyerAndroid.CallStatic("setDisableNetworkData", disable);
 #endif
@@ -762,12 +766,12 @@ namespace AppsFlyerSDK
                 foreach (var entry in dictionary)
                 {
                     val = AndroidJNIHelper.CreateJNIArgArray(new object[] { entry.Key, entry.Value });
-                    AndroidJNI.CallObjectMethod(map.GetRawObject(), putMethod,val);
+                    AndroidJNI.CallObjectMethod(map.GetRawObject(), putMethod, val);
                     AndroidJNI.DeleteLocalRef(val[0].l);
                     AndroidJNI.DeleteLocalRef(val[1].l);
                 }
             }
-            
+
             return map;
         }
     }

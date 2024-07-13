@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -14,7 +10,7 @@ namespace Assets.Scripts
 
         public void Disable(int[] indexes)
         {
-            foreach(var index  in indexes)
+            foreach (var index in indexes)
             {
                 _pieces[index].gameObject.SetActive(false);
             }
@@ -22,7 +18,7 @@ namespace Assets.Scripts
 
         public void Enable()
         {
-            foreach(var piece in _pieces)
+            foreach (var piece in _pieces)
             {
                 piece.gameObject.SetActive(true);
             }

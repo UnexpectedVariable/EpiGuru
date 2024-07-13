@@ -33,7 +33,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace OneSignalSDK.Installer {
+namespace OneSignalSDK.Installer
+{
     // Forked from  https://github.com/Jackyjjc/MiniJSON.cs
     // version: 6de00beb134bbab9d873033a48b32e4067ed0c25
 
@@ -304,7 +305,7 @@ namespace OneSignalSDK.Installer {
                                         hex[i] = NextChar;
                                     }
 
-                                    s.Append((char) Convert.ToInt32(new string(hex), 16));
+                                    s.Append((char)Convert.ToInt32(new string(hex), 16));
                                     break;
                                 default:
                                     s.Append(c);
@@ -496,7 +497,7 @@ namespace OneSignalSDK.Installer {
                 }
                 else if (value is bool)
                 {
-                    builder.Append((bool) value ? "true" : "false");
+                    builder.Append((bool)value ? "true" : "false");
                 }
                 else if ((asList = value as IList) != null)
                 {
@@ -508,7 +509,7 @@ namespace OneSignalSDK.Installer {
                 }
                 else if (value is char)
                 {
-                    SerializeString(new string((char) value, 1));
+                    SerializeString(new string((char)value, 1));
                 }
                 else
                 {
@@ -644,7 +645,7 @@ namespace OneSignalSDK.Installer {
                 // Previously floats and doubles lost precision too.
                 if (value is float)
                 {
-                    builder.Append(((float) value).ToString("R", System.Globalization.CultureInfo.InvariantCulture));
+                    builder.Append(((float)value).ToString("R", System.Globalization.CultureInfo.InvariantCulture));
                 }
                 else if (value is int
                          || value is uint
