@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    internal class ObstacleSpawner : MonoBehaviour, ISpawner
+    internal class ObstacleSpawner : MonoBehaviour, ISpawner, IPauseable
     {
         [SerializeField]
         private Wall _wall = null;
@@ -20,6 +20,10 @@ namespace Assets.Scripts
         private System.Random _rng = null;
         private int _positionCount = 0;
         private ObjectPool<Wall> _pool = null;
+
+        private bool _isPaused = false;
+
+        public Action OnObstacleTriggered = null;
 
         public System.Random RNG
         {
@@ -44,6 +48,7 @@ namespace Assets.Scripts
         public GameObject Spawn()
         {
             if (_rng == null) return null;
+            if(_isPaused) return null;
             return SpawnWall().gameObject;
         }
 
@@ -58,6 +63,7 @@ namespace Assets.Scripts
             if(wall == null)
             {
                 wall = Instantiate(_wall, _poolObject.transform);
+                wall.SubscribeObstacles(OnObstacleTriggered);
                 _pool.Add(wall);
             }
 
@@ -79,6 +85,11 @@ namespace Assets.Scripts
             }
 
             return positions;
+        }
+
+        public void TogglePause()
+        {
+            _isPaused = !_isPaused; 
         }
     }
 }

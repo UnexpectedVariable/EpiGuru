@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    internal class CoinSpawner : MonoBehaviour, ISpawner
+    internal class CoinSpawner : MonoBehaviour, ISpawner, IPauseable
     {
         [SerializeField]
         private Coin _coin = null;
@@ -25,6 +25,8 @@ namespace Assets.Scripts
 
         public TextMeshProUGUI PointsLabel = null;
 
+        private bool _isPaused = false;
+
         public System.Random RNG
         {
             set => _rng = value;
@@ -39,6 +41,7 @@ namespace Assets.Scripts
         public GameObject Spawn()
         {
             if (_rng == null) return null;
+            if(_isPaused) return null;
             return SpawnCoin().gameObject;
         }
 
@@ -67,6 +70,11 @@ namespace Assets.Scripts
             coin.gameObject.SetActive(true);
 
             return coin.gameObject;
+        }
+
+        public void TogglePause()
+        {
+            _isPaused = !_isPaused;
         }
     }
 }

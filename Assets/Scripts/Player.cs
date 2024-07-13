@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 namespace Assets.Scripts
 {
     [RequireComponent(typeof(Rigidbody))]
-    internal class Player : MonoBehaviour
+    internal class Player : MonoBehaviour, IPauseable
     {
         [SerializeField]
         private InputAction _leftStrafeAction = null;
@@ -57,6 +57,24 @@ namespace Assets.Scripts
                     transform.position = position;
                 }
                 await Task.Delay(TimeSpan.FromSeconds(_pollingInterval));
+            }
+        }
+
+        public void TogglePause()
+        {
+            ToggleInputAction(_leftStrafeAction);
+            ToggleInputAction(_rightStrafeAction);
+        }
+
+        private void ToggleInputAction(InputAction action)
+        {
+            if (action.enabled)
+            {
+                action.Disable();
+            }
+            else
+            {
+                action.Enable();
             }
         }
     }
