@@ -38,11 +38,11 @@ namespace Assets.Scripts
         {
             _leftStrafeButton.OnButtonHeld += () =>
             {
-                MoveTransform(_movementVector * -1 * Time.fixedDeltaTime * _speedMultiplier);
+                MoveTransform(_movementVector * -1 * Time.deltaTime * _speedMultiplier);
             };
             _rightStrafeButton.OnButtonHeld += () =>
             {
-                MoveTransform(_movementVector * Time.fixedDeltaTime * _speedMultiplier);
+                MoveTransform(_movementVector * Time.deltaTime * _speedMultiplier);
             };
         }
 
@@ -56,11 +56,11 @@ namespace Assets.Scripts
         {
             if (_leftStrafeAction.IsPressed())
             {
-                MoveTransform(_movementVector * -1 * Time.fixedDeltaTime * _speedMultiplier);
+                MoveTransform(_movementVector * -1 * Time.deltaTime * _speedMultiplier);
             }
             if (_rightStrafeAction.IsPressed())
             {
-                MoveTransform(_movementVector * Time.fixedDeltaTime * _speedMultiplier);
+                MoveTransform(_movementVector * Time.deltaTime * _speedMultiplier);
             }
         }
 
@@ -70,19 +70,6 @@ namespace Assets.Scripts
             position += movementVector;
             position.x = Mathf.Clamp(position.x, MaximumX * -1, MaximumX);
             transform.position = position;
-        }
-
-
-        private void ToggleInputAction(InputAction action)
-        {
-            if (action.enabled)
-            {
-                action.Disable();
-            }
-            else
-            {
-                action.Enable();
-            }
         }
 
         public void Pause()

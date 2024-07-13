@@ -1026,6 +1026,7 @@ MonoBehaviour:
   _spawnInterval: 1.75
   _moveInterval: 0.0025
   _isWorking: 0
+  _isRunning: 1
   _pointsLabel: {fileID: 203632557}
   _finalPointsLabel: {fileID: 75933113}
   _pauseButton: {fileID: 1734213935}
@@ -1250,6 +1251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objects: []
   _movement: {x: 0, y: 0, z: -1}
+  _movementMultiplier: 300
 --- !u!1 &1102062216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,6 +1481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de842bcd4121e99428460cf85294f740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Active: 1
 --- !u!1 &1204302047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,7 +1890,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 5000
-  field of view: 90
+  field of view: 120
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2576,6 +2579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de842bcd4121e99428460cf85294f740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Active: 1
 --- !u!1 &1734213933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,7 +2981,7 @@ PrefabInstance:
     - target: {fileID: 3689071312316399798, guid: 8b8884e4f9197404d84d7945eb4cf383,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4100
+      value: -4000
       objectReference: {fileID: 0}
     - target: {fileID: 3689071312316399798, guid: 8b8884e4f9197404d84d7945eb4cf383,
         type: 3}
@@ -3093,7 +3097,7 @@ MonoBehaviour:
   _rightStrafeButton: {fileID: 1723594139}
   _body: {fileID: 0}
   _movementVector: {x: 1, y: 0, z: 0}
-  _speedMultiplier: 25
+  _speedMultiplier: 175
   MaximumX: 0
 --- !u!54 &1938303421588542519
 Rigidbody:

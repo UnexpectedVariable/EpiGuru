@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Util;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -10,6 +11,8 @@ namespace Assets.Scripts
         private List<GameObject> _objects = new List<GameObject>();
         [SerializeField]
         private Vector3 _movement = Vector3.zero;
+        [SerializeField]
+        private float _movementMultiplier = 0f;
 
         private bool _isPaused = false;
 
@@ -18,8 +21,13 @@ namespace Assets.Scripts
             if (_isPaused) return;
             foreach (var obj in _objects)
             {
-                obj.transform.position += _movement;
+                obj.transform.position += _movement * Time.deltaTime * _movementMultiplier;
             }
+        }
+
+        private void Update()
+        {
+            Move();
         }
 
         public void Add(GameObject obj)
