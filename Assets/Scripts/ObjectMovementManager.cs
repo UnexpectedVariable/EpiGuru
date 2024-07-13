@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Util;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-    internal class ObjectMovementManager : MonoBehaviour, IPauseable
+    internal class ObjectMovementManager : MonoBehaviour, IPauseable, IResumable
     {
         [SerializeField]
         private List<GameObject> _objects = new List<GameObject>();
@@ -27,9 +28,14 @@ namespace Assets.Scripts
             _objects.Add(obj);
         }
 
-        public void TogglePause()
+        public void Pause()
         {
-            _isPaused = !_isPaused;
+            _isPaused = true;
+        }
+
+        public void Resume()
+        {
+            _isPaused = false;
         }
     }
 }

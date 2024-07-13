@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Assets.Scripts.Util;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-    internal class ObstacleSpawner : MonoBehaviour, ISpawner, IPauseable
+    internal class ObstacleSpawner : MonoBehaviour, ISpawner, IPauseable, IResumable
     {
         [SerializeField]
         private Wall _wall = null;
@@ -51,7 +52,6 @@ namespace Assets.Scripts
         private Wall SpawnWall()
         {
             var gapsPositions = GenerateGapsPositions();
-            Debug.Log($"Gaps will be at positions: {string.Join(", ", gapsPositions)}");
 
             Wall wall = _pool.Get();
             wall?.Enable();
@@ -83,9 +83,14 @@ namespace Assets.Scripts
             return positions;
         }
 
-        public void TogglePause()
+        public void Pause()
         {
-            _isPaused = !_isPaused;
+            _isPaused = true;
+        }
+
+        public void Resume()
+        {
+            _isPaused = false;
         }
     }
 }

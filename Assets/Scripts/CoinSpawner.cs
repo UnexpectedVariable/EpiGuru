@@ -1,9 +1,10 @@
-﻿using TMPro;
+﻿using Assets.Scripts.Util;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-    internal class CoinSpawner : MonoBehaviour, ISpawner, IPauseable
+    internal class CoinSpawner : MonoBehaviour, ISpawner, IPauseable, IResumable
     {
         [SerializeField]
         private Coin _coin = null;
@@ -66,9 +67,14 @@ namespace Assets.Scripts
             return coin.gameObject;
         }
 
-        public void TogglePause()
+        public void Pause()
         {
-            _isPaused = !_isPaused;
+            _isPaused = true;
+        }
+
+        public void Resume()
+        {
+            _isPaused = false;
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     internal interface IPauseable
     {
-        void TogglePause();
+        void Pause();
     }
 }

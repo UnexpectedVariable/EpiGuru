@@ -42,6 +42,8 @@ namespace Assets.Scripts
         private float _moveInterval = 0f;
         [SerializeField]
         private bool _isWorking = false;
+        [SerializeField]
+        private bool _isRunning = true;
 
         [Header("UI")]
         [SerializeField]
@@ -83,7 +85,14 @@ namespace Assets.Scripts
         {
             _pauseButton.onClick.AddListener(() =>
             {
-                Pause();
+                if (_isRunning)
+                {
+                    Pause();
+                }
+                else
+                {
+                    Resume();
+                }
             });
             _exitButton.onClick.AddListener(() =>
             {
@@ -98,10 +107,20 @@ namespace Assets.Scripts
 
         private void Pause()
         {
-            _coinSpawner.TogglePause();
-            _obstacleSpawner.TogglePause();
-            _movementManager.TogglePause();
-            _player.TogglePause();
+            _coinSpawner.Pause();
+            _obstacleSpawner.Pause();
+            _movementManager.Pause();
+            _player.Pause();
+            _isRunning = false;
+        }
+
+        private void Resume()
+        {
+            _coinSpawner.Resume();
+            _obstacleSpawner.Resume();
+            _movementManager.Resume();
+            _player.Resume();
+            _isRunning = true;
         }
 
         private void InitializePlayer()
