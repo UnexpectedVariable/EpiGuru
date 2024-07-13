@@ -87,6 +87,7 @@ namespace Assets.Scripts
             });
             _exitButton.onClick.AddListener(() =>
             {
+                Pause();
                 SceneManager.LoadScene("MainScene");
             });
             _closeButton.onClick.AddListener(() =>
