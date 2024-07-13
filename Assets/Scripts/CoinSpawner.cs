@@ -32,7 +32,7 @@ namespace Assets.Scripts
             set => _rng = value;
         }
 
-        private void Start()
+        private void Awake()
         {
             _pool = new ObjectPool<Coin>();
         }

@@ -38,7 +38,7 @@ namespace Assets.Scripts
             }
         }
 
-        private void Start()
+        private void Awake()
         {
             if (_maximumGapsPerWave <= 0) Debug.LogWarning($"Maximum gap count per wave is lower or equals zero");
             _pool = new ObjectPool<Wall>();
