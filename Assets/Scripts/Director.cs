@@ -64,7 +64,7 @@ namespace Assets.Scripts
 
         private void Awake()
         {
-            //AppsFlyer.initSDK("ytPuQc6oHMvGHLh83FVpdd", null);
+            AppsFlyer.initSDK("ytPuQc6oHMvGHLh83FVpdd", null);
             //OneSignal.Initialize("635c5f12-bb1c-4e8a-92a5-65636c604328");
         }
 
